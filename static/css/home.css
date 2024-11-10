@@ -1,0 +1,186 @@
+/* Style global du corps du document */
+body {
+    font-family: 'Arial', sans-serif;  /* Police de caractères */
+    background: linear-gradient(to right, #ffc5aa, #ff6600);  /* Dégradé d'arrière-plan */
+    margin: 0;
+    padding: 0;
+    color: #333;  /* Couleur du texte */
+    overflow-x: hidden;  /* Désactive le défilement horizontal */
+}
+
+/* Style pour l'en-tête */
+header {
+    background-color: #ff6600;  /* Couleur de fond de l'en-tête */
+    padding: 20px;
+    text-align: center;  /* Centre le texte */
+    color: white;  /* Couleur du texte */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Style pour la liste de navigation */
+nav ul {
+    list-style-type: none;  /* Supprime les puces de la liste */
+    padding: 0;
+    display: flex;  /* Affiche les éléments en ligne */
+    justify-content: center;  /* Centre les éléments horizontalement */
+}
+
+/* Style pour chaque élément de la liste de navigation */
+nav ul li {
+    margin: 0 15px;  /* Marge entre les éléments de la liste */
+}
+
+/* Style pour les liens de navigation */
+nav ul li a {
+    text-decoration: none;  /* Supprime la décoration des liens */
+    color: white;  /* Couleur du texte des liens */
+    font-size: 18px;
+    transition: color 0.3s;  /* Transition douce pour le changement de couleur */
+}
+
+/* Style au survol des liens de navigation */
+nav ul li a:hover {
+    color: #ffe680;  /* Couleur des liens au survol */
+}
+
+/* Style pour le logo */
+.logo img {
+    width: 100px;
+    margin: 20px auto;
+    animation: spin 4s infinite linear;  /* Animation de rotation infinie */
+}
+
+/* Animation de rotation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Style pour le titre principal */
+h1 {
+    font-size: 48px;
+    margin: 10px 0;
+    animation: slide-in 1s forwards;  /* Animation de glissement */
+}
+
+/* Animation de glissement */
+@keyframes slide-in {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Style pour le contenu principal */
+main {
+    padding: 20px;
+}
+
+/* Style pour la section des produits */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Style pour chaque produit individuel */
+.product {
+    background-color: rgb(240, 204, 122);
+    border: 1px solid #fcfc57;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* Ombre initiale plus légère */
+    margin: 20px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;  /* Centre le texte */
+    transition: transform 0.3s, box-shadow 0.3s;  /* Transitions pour l'animation au survol */
+    word-wrap: break-word;  /* Permettre au texte de passer à la ligne */
+    overflow: hidden;  /* Masquer les débordements */
+}
+
+/* Animation au survol des produits */
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Style pour l'image du produit */
+.product img {
+    max-width: 100%;  /* Assure que l'image ne dépasse pas de son conteneur */
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style pour le prix ancien */
+.price {
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;  /* Texte barré */
+}
+
+/* Style pour le prix actuel */
+.price.current {
+    font-size: 18px;
+    color: #ec813a;  /* Couleur du prix actuel */
+    text-decoration: none;  /* Pas de décoration */
+}
+
+/* Style pour le pied de page */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style pour le titre du pied de page */
+footer h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+/* Style pour le texte du pied de page */
+footer p {
+    font-size: 16px;
+}
+
+/* Style pour le carrousel */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    display: none;
+    width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}

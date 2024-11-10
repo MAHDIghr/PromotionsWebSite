@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoza</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <script src="{% static 'js/home.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Produits</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">À propos</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="{% static 'images/logoWebsite.png' %}" alt="Logo">
+        </div>
+        <h1>Promoza</h1>
+        <p>Le meilleur site pour des promotions incroyables!</p>
+    </header>
+    <main>
+        <section class="products">
+            {% if products %}
+                {% for product in products %}
+                    <div class="product">
+                        <div class="image-gallery">
+                            {% if product.images.all %}
+                                <div class="carousel">
+                                    {% for image in product.images.all %}
+                                        <div class="carousel-item">
+                                            <img src="{{ image.image.url }}" alt="{{ product.name }}">
+                                        </div>
+                                    {% endfor %}
+                                    <button class="carousel-control prev">&laquo;</button>
+                                    <button class="carousel-control next">&raquo;</button>
+                                </div>
+                            {% else %}
+                                <img src="{% static 'images/default_product.png' %}" alt="No image available">
+                            {% endif %}
+                        </div>
+                        <h2>{{ product.name }}</h2>
+                        <div class="prices">
+                            <p class="old-price">Prix avant: <span>{{ product.original_price }}€</span></p>
+                            <p class="new-price">Prix après: <span>{{ product.current_price }}€</span></p>
+                        </div>
+                        <a href="#" class="details-link">Voir les détails</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucun produit disponible.</p>
+            {% endif %}
+        </section>
+    </main>
+    
+    <footer>
+        <h2>Help & Support</h2>
+        <p>Pour toute aide, contactez-nous à support@promoza.com</p>
+    </footer>
+</body>
+</html>
