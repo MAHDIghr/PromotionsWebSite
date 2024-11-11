@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+</head>
+<body>
+    <main>
+        <section class="product-container">
+            <div class="product">
+                <div class="image-gallery">
+                    <div class="carousel">
+                        {% for image in product.images.all %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ image.image.url }}" alt="{{ product.name }}">
+                            </div>
+                        {% endfor %}
+                        <button class="carousel-control prev">&laquo;</button>
+                        <button class="carousel-control next">&raquo;</button>
+                    </div>
+                </div>
+                <h2 class="product-name">{{ product.name }}</h2>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="prices">
+                    <p class="old-price">Prix avant: <span>{{ product.original_price }}€</span></p>
+                    <p class="new-price">Prix après: <span>{{ product.current_price }}€</span></p>
+                </div>
+                <a href="{{ product.product_link }}" class="buy-button" target="_blank">Acheter maintenant</a>
+            </div>
+        </section>
+    </main>
+    <script src="{% static 'js/product.js' %}"></script>
+</body>
+</html>

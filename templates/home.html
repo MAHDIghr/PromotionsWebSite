@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promoza</title>
+    <title>PromoZella</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -11,57 +11,147 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Produits</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">À propos</a></li>
-            </ul>
-        </nav>
-        <div class="logo">
-            <img src="{% static 'images/logoWebsite.png' %}" alt="Logo">
+        <div class="header-container">
+            <div class="logo">
+                <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="Logo">
+            </div>
+            <div class="brands-button">
+                <button id="brandsBtn">Marques</button>
+                <div id="brandsList" style="display:none;">
+                    <p>cdiscount</p>
+                    <p>aliexpress</p>
+                    <p>amazon</p>
+                </div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            
         </div>
-        <h1>Promoza</h1>
-        <p>Le meilleur site pour des promotions incroyables!</p>
     </header>
+    
     <main>
-        <section class="products">
-            {% if products %}
-                {% for product in products %}
+        <!-- Animated Advertisement Section -->
+        <section class="ad-section">
+            <div class="ad-panel">
+                <div class="ad-images active">
+                    <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="Ad Image 1">
+                </div>
+                <div class="ad-images">
+                    <img src="{% static 'images/logoWebsite.png' %}" alt="Ad Image 2">
+                </div>
+                <div class="ad-images">
+                    <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="Ad Image 3">
+                </div>
+            </div>
+        </section>
+        <!-- Category Filter Bar -->
+        <section class="category-filter-bar">
+            <div class="category-panel">
+                <div class="categories">
+                    <span>Maison</span>
+                    <span>HighTech</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <span>Sport</span>
+                    <!-- Add more categories as needed -->
+                </div>
+                <button id="nextBtn" class="carousel-btn">&raquo;</button>
+            </div>
+        </section>
+        
+        <!-- Filter Button -->
+        <section class="filters-section">
+            <button id="filtersBtn">Filtres</button>
+            <div id="filtersList">
+                <p>Tries Prix</p>
+                <p>Chers vers moins chers</p>
+                <p>Moins chers vers chers</p>
+            </div>
+        </section>
+        
+        <!-- Best Deals Section -->
+        <section class="best-deals">
+            <h2 class="best-deals-title">Meilleurs Plans du Moment</h2>
+            <div class="products">
+                {% for product in MeilleursProduitsDuMoments %}
                     <div class="product">
-                        <div class="image-gallery">
-                            {% if product.images.all %}
-                                <div class="carousel">
-                                    {% for image in product.images.all %}
-                                        <div class="carousel-item">
-                                            <img src="{{ image.image.url }}" alt="{{ product.name }}">
-                                        </div>
-                                    {% endfor %}
-                                    <button class="carousel-control prev">&laquo;</button>
-                                    <button class="carousel-control next">&raquo;</button>
-                                </div>
-                            {% else %}
-                                <img src="{% static 'images/default_product.png' %}" alt="No image available">
-                            {% endif %}
-                        </div>
-                        <h2>{{ product.name }}</h2>
+                        {% if product.images.first %}
+                            <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}"> 
+                        {% else %} 
+                            <img src="{% static 'images/logoWebsite.png' %}" alt="No image available"> 
+                        {% endif %}   
+                        <h3>{{ product.name }}</h3>
                         <div class="prices">
-                            <p class="old-price">Prix avant: <span>{{ product.original_price }}€</span></p>
-                            <p class="new-price">Prix après: <span>{{ product.current_price }}€</span></p>
-                        </div>
-                        <a href="#" class="details-link">Voir les détails</a>
+                            <p class="old-price"> {{ product.original_price }}€</p>
+                            <p class="new-price">  {{ product.current_price }}€</p>
+                        </div>  
+                        <a class="details-link" href="{% url 'product_detail' product.slug %}">Voir les détails</a>
                     </div>
                 {% endfor %}
-            {% else %}
-                <p>Aucun produit disponible.</p>
+            </div>
+        </section>
+        
+        <!-- All Products Section -->
+        <section class="all-products">
+            <h2 class="all-products-title">Tous les Produits</h2>
+            <div class="products">
+                {% for product in products %}
+                    <div class="product">
+                        {% if product.images.first %}
+                            <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}"> 
+                        {% else %} 
+                            <img src="{% static 'images/logoWebsite.png' %}" alt="No image available"> 
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <div class="prices">
+                            <p class="old-price"> {{ product.original_price }}€</p>
+                            <p class="new-price"> {{ product.current_price }}€</p>
+                        </div>
+                        <a class="details-link" href="{% url 'product_detail' product.slug %}">Voir les détails</a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if products|length > 10 %}
+                <a href="{% url 'all_products' %}" class="more-products-btn">Voir Plus de Produits</a>
             {% endif %}
         </section>
     </main>
     
+    <!-- Footer -->
     <footer>
-        <h2>Help & Support</h2>
-        <p>Pour toute aide, contactez-nous à support@promoza.com</p>
+        <div class="contact-info">
+            <p>Contactez-nous : support@promozella.com</p>
+            <p>Instagram : @PromoZella</p>
+            <p>TikTok : @PromoZella</p>
+            <p>FAQ</p>
+        </div>
     </footer>
+
+    <!-- Placeholder for future JavaScript -->
+    <script>
+        document.getElementById('brandsBtn').addEventListener('click', function() {
+            var brandsList = document.getElementById('brandsList');
+            if (brandsList.style.display === 'none') {
+                brandsList.style.display = 'block';
+            } else {
+                brandsList.style.display = 'none';
+            }
+        });
+        
+        document.getElementById('filtersBtn').addEventListener('click', function() {
+            var filtersList = document.getElementById('filtersList');
+            if (filtersList.style.display === 'none') {
+                filtersList.style.display = 'block';
+            } else {
+                filtersList.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

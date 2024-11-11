@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Product(models.Model):
     # Product name
@@ -43,11 +44,15 @@ class Product(models.Model):
     # Promo code (discount code for the product)
     promo_code = models.CharField(max_length=50, null=True, blank=True)
 
-    # Removing the single image field
-    # image = models.ImageField(upload_to='products/', blank=True, null=True)
+    # Slug field 
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     
     click_count = models.IntegerField(default=0)
     
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.name}-{self.id}")
+            super().save(*args, **kwargs)
     def __str__(self):
         return self.name
 

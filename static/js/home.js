@@ -1,49 +1,32 @@
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM fully loaded and parsed');
-    
-    const products = document.querySelectorAll('.product');
-    
-    products.forEach(product => {
-        product.addEventListener('mouseover', () => {
-            product.style.transform = 'scale(1.05)';
-            product.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-        });
+// JavaScript pour afficher les images une par une
+let currentImageIndex = 0;
+const images = document.querySelectorAll('.ad-images');
 
-        product.addEventListener('mouseout', () => {
-            product.style.transform = 'scale(1)';
-            product.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-        });
+function showNextImage() {
+    images[currentImageIndex].classList.remove('active');
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].classList.add('active');
+}
 
-        // Carousels
-        const carousels = product.querySelectorAll('.carousel');
-        
-        carousels.forEach(carousel => {
-            let currentIndex = 0;
-            const items = carousel.querySelectorAll('.carousel-item');
-            const totalItems = items.length;
-            const nextButton = carousel.querySelector('.carousel-control.next');
-            const prevButton = carousel.querySelector('.carousel-control.prev');
-            
-            function showItem(index) {
-                items.forEach((item, i) => {
-                    item.classList.toggle('active', i === index);
-                });
-            }
-            
-            function nextItem() {
-                currentIndex = (currentIndex + 1) % totalItems;
-                showItem(currentIndex);
-            }
-            
-            function prevItem() {
-                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-                showItem(currentIndex);
-            }
-            
-            nextButton.addEventListener('click', nextItem);
-            prevButton.addEventListener('click', prevItem);
-            
-            showItem(currentIndex);
-        });
+setInterval(showNextImage, 3000); // Change d'image toutes les 3 secondes
+
+// JavaScript pour le carrousel des catégories
+const categoriesContainer = document.querySelector('.categories');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let scrollAmount = 0;
+const scrollStep = 100; // Ajustez la valeur selon vos besoins
+
+prevBtn.addEventListener('click', () => {
+    categoriesContainer.scrollBy({
+        left: -scrollStep,
+        behavior: 'smooth'
+    });
+});
+
+nextBtn.addEventListener('click', () => {
+    categoriesContainer.scrollBy({
+        left: scrollStep,
+        behavior: 'smooth'
     });
 });

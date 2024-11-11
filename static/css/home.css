@@ -1,186 +1,549 @@
-/* Style global du corps du document */
-body {
-    font-family: 'Arial', sans-serif;  /* Police de caractères */
-    background: linear-gradient(to right, #ffc5aa, #ff6600);  /* Dégradé d'arrière-plan */
-    margin: 0;
-    padding: 0;
-    color: #333;  /* Couleur du texte */
-    overflow-x: hidden;  /* Désactive le défilement horizontal */
-}
-
-/* Style pour l'en-tête */
+/* Couleur de fond pour le header */
 header {
-    background-color: #ff6600;  /* Couleur de fond de l'en-tête */
-    padding: 20px;
-    text-align: center;  /* Centre le texte */
-    color: white;  /* Couleur du texte */
-    position: relative;
-    overflow: hidden;
+    background-color: #393737; /* Gris clair */
+    padding: 5px;
 }
 
-/* Style pour la liste de navigation */
-nav ul {
-    list-style-type: none;  /* Supprime les puces de la liste */
-    padding: 0;
-    display: flex;  /* Affiche les éléments en ligne */
-    justify-content: center;  /* Centre les éléments horizontalement */
+/* Couleur de fond pour le body */
+body {
+    background-color: #ffffff; /* Blanc */
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Style pour chaque élément de la liste de navigation */
-nav ul li {
-    margin: 0 15px;  /* Marge entre les éléments de la liste */
-}
-
-/* Style pour les liens de navigation */
-nav ul li a {
-    text-decoration: none;  /* Supprime la décoration des liens */
-    color: white;  /* Couleur du texte des liens */
-    font-size: 18px;
-    transition: color 0.3s;  /* Transition douce pour le changement de couleur */
-}
-
-/* Style au survol des liens de navigation */
-nav ul li a:hover {
-    color: #ffe680;  /* Couleur des liens au survol */
-}
-
-/* Style pour le logo */
 .logo img {
-    width: 100px;
-    margin: 20px auto;
-    animation: spin 4s infinite linear;  /* Animation de rotation infinie */
+    width: 210px; /* Ajustez la largeur selon vos besoins */
+    height: 70px; /* Conserver les proportions de l'image */
 }
 
-/* Animation de rotation */
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Style pour le titre principal */
-h1 {
-    font-size: 48px;
-    margin: 10px 0;
-    animation: slide-in 1s forwards;  /* Animation de glissement */
-}
-
-/* Animation de glissement */
-@keyframes slide-in {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Style pour le contenu principal */
-main {
-    padding: 20px;
-}
-
-/* Style pour la section des produits */
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-/* Style pour chaque produit individuel */
-.product {
-    background-color: rgb(240, 204, 122);
-    border: 1px solid #fcfc57;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* Ombre initiale plus légère */
-    margin: 20px;
-    padding: 20px;
-    width: 250px;
-    text-align: center;  /* Centre le texte */
-    transition: transform 0.3s, box-shadow 0.3s;  /* Transitions pour l'animation au survol */
-    word-wrap: break-word;  /* Permettre au texte de passer à la ligne */
-    overflow: hidden;  /* Masquer les débordements */
-}
-
-/* Animation au survol des produits */
-.product:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-/* Style pour l'image du produit */
-.product img {
-    max-width: 100%;  /* Assure que l'image ne dépasse pas de son conteneur */
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
-/* Style pour le prix ancien */
-.price {
-    font-size: 16px;
-    color: #999;
-    text-decoration: line-through;  /* Texte barré */
-}
-
-/* Style pour le prix actuel */
-.price.current {
-    font-size: 18px;
-    color: #ec813a;  /* Couleur du prix actuel */
-    text-decoration: none;  /* Pas de décoration */
-}
-
-/* Style pour le pied de page */
+/* Couleur de fond pour le footer */
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
+    background-color: #393737; /* Gris clair */
     padding: 20px;
+    text-align: center;
 }
 
-/* Style pour le titre du pied de page */
-footer h2 {
-    font-size: 24px;
-    margin: 10px 0;
+/* Style pour le conteneur d'en-tête */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
-/* Style pour le texte du pied de page */
-footer p {
+/* Style pour la barre de recherche */
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    
+}
+
+.search-bar input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
     font-size: 16px;
 }
 
-/* Style pour le carrousel */
-.carousel {
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: #ff6600; /* Couleur de surbrillance lors de la focalisation */
+}
+
+/* Style pour le conteneur du bouton Marques */
+.brands-button {
     position: relative;
+    margin-left: 850px;
+    margin-right: 20px;
+}
+
+/* Style pour le bouton Marques */
+#brandsBtn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6600; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border-radius: 20px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur pointeur */
+    font-size: 16px; /* Taille de la police */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+#brandsBtn:hover {
+    background-color: #ff8533; /* Couleur de fond du bouton au survol */
+}
+
+/* Style pour la liste des marques */
+#brandsList {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bordures arrondies pour la liste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour la liste */
+    z-index: 1000; /* Assurer que la liste est au-dessus des autres éléments */
+    display: none; /* Initialement caché */
+}
+
+/* Style pour chaque élément de la liste */
+#brandsList p {
+    padding: 10px;
+    margin: 0;
+    cursor: pointer; /* Curseur pointeur pour chaque élément */
+}
+
+/* Couleur de fond au survol des éléments de la liste */
+#brandsList p:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Conteneur de la section de publicité */
+.ad-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    padding: 20px 0; /* Espacement vertical */
+    background-color: #f0f0f0; /* Couleur de fond pour la section de publicité */
+}
+
+/* Style pour le panel d'annonces */
+.ad-panel {
+    width: 80%; /* Ajustez la largeur selon vos besoins */
+    max-width: 800px; /* Largeur maximale du panel */
+    background-color: white; /* Couleur de fond du panel */
+    border-radius: 20px; /* Bordures arrondies pour le panel */
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour le panel */
+    position: relative;
 }
 
-.carousel-item {
-    display: none;
+/* Conteneur pour les images */
+.ad-images {
+    display: none; /* Les images sont cachées par défaut */
     width: 100%;
 }
 
-.carousel-item img {
+.ad-images.active {
+    display: block; /* Affiche l'image active */
+}
+
+.ad-panel img {
     width: 100%;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 20px; /* Bordures arrondies pour les images */
 }
 
-.carousel-item.active {
-    display: block;
+/* Animation pour les images */
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.carousel-control {
+.ad-images.active {
+    animation: fade 1s ease-in-out; /* Animation d'apparition */
+}
+
+/* Conteneur de la section de la barre des catégories */
+.category-filter-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #fffef7; /* Couleur de fond pour la barre des catégories */
+    overflow: hidden; /* Cache le débordement pour le carrousel */
+}
+
+/* Style pour le panel 3D */
+.category-panel {
+    display: flex;
+    align-items: center;
+    background-color: white; /* Couleur de fond du panel */
+    border-radius: 20px; /* Bordures arrondies */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée pour l'effet 3D */
+    overflow: hidden; /* Cache le débordement des catégories */
+    position: relative;
+    width: 80%; /* Ajustez la largeur du panel selon vos besoins */
+    max-width: 800px;
+}
+
+/* Style pour le conteneur des catégories */
+.categories {
+    display: flex;
+    gap: 25px; /* Espacement entre les catégories */
+    transition: transform 0.3s ease-in-out; /* Transition douce pour le carrousel */
+}
+
+/* Style pour chaque catégorie */
+.categories span {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600; /* Couleur de fond pour les catégories */
+    color: white; /* Couleur du texte */
+    border-radius: 20px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+.categories span:hover {
+    background-color: #ff8533; /* Couleur de fond au survol */
+}
+
+/* Boutons de navigation du carrousel */
+.carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.carousel-control.prev {
+#prevBtn {
     left: 10px;
 }
 
-.carousel-control.next {
+#nextBtn {
     right: 10px;
+}
+
+/* Conteneur de la section des filtres */
+.filters-section {
+    position: relative; /* Nécessaire pour positionner le bouton en fonction de cette section */
+    padding: 20px;
+    background-color: linear-gradient(to right, #ffdd00, #ff8503);; /* Couleur de fond pour la section des filtres */
+}
+
+/* Style pour le bouton Filtres */
+#filtersBtn {
+    position: absolute;
+    top: 0px; /* Ajustez la valeur selon vos besoins */
+    right: 50px; /* Ajustez la valeur selon vos besoins */
+    padding: 10px 20px;
+    border: none;
+    background-color: #393737; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border-radius: 20px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur pointeur */
+    font-size: 16px; /* Taille de la police */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+#filtersBtn:hover {
+    background-color: #ff8533; /* Couleur de fond du bouton au survol */
+}
+
+/* Style pour la liste des filtres */
+#filtersList {
+    position: absolute;
+    top: calc(100% + 5px); /* Placer la liste juste en dessous du bouton avec un petit espacement */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bordures arrondies pour la liste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour la liste */
+    z-index: 1000; /* Assurer que la liste est au-dessus des autres éléments */
+    display: none; /* Initialement caché */
+}
+
+/* Style pour chaque élément de la liste */
+#filtersList p {
+    padding: 10px;
+    margin: 0;
+    cursor: pointer; /* Curseur pointeur pour chaque élément */
+}
+
+/* Couleur de fond au survol des éléments de la liste */
+#filtersList p:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style pour le titre Meilleurs Plans du Moment */
+.best-deals-title {
+    font-size: 2.5em; /* Taille de la police */
+    color: #ff6600; /* Couleur du texte */
+    text-align: center; /* Alignement centré */
+    margin-top: 20px; /* Marge supérieure */
+    margin-bottom: 20px; /* Marge inférieure */
+    font-weight: bold; /* Gras */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 2px; /* Espacement des lettres */
+    position: relative; /* Position relative pour l'animation */
+    transition: color 0.3s ease-in-out; /* Transition douce pour la couleur */
+}
+
+.best-deals-title::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff6600; /* Couleur de la ligne en surbrillance */
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.best-deals-title:hover {
+    color: #ff8533; /* Couleur du texte au survol */
+}
+
+.best-deals-title:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+/* Conteneur pour la section des meilleurs produits */
+.best-products {
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* Couleur de fond douce */
+    border-radius: 10px; /* Bordures arrondies pour le conteneur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour la section */
+    margin-bottom: 40px; /* Marge inférieure pour espacement */
+}
+
+/* Style pour le titre des meilleurs produits */
+.best-products-title {
+    font-size: 2.5em; /* Taille de la police */
+    color: #ff6600; /* Couleur du texte */
+    text-align: center; /* Alignement centré */
+    margin-top: 20px; /* Marge supérieure */
+    margin-bottom: 20px; /* Marge inférieure */
+    font-weight: bold; /* Gras */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 2px; /* Espacement des lettres */
+    position: relative; /* Position relative pour l'animation */
+    transition: color 0.3s ease-in-out; /* Transition douce pour la couleur */
+}
+
+.best-products-title::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff6600; /* Couleur de la ligne en surbrillance */
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.best-products-title:hover {
+    color: #ff8533; /* Couleur du texte au survol */
+}
+
+.best-products-title:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+/* Style pour le conteneur de chaque produit */
+.best-products .product {
+    background-color: white; /* Couleur de fond des produits */
+    border-radius: 10px; /* Bordures arrondies pour les produits */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour les produits */
+    margin: 20px; /* Marge autour de chaque produit */
+    padding: 20px; /* Espacement interne pour les produits */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition douce pour l'animation */
+    overflow: hidden; /* Cache le débordement */
+}
+
+/* Effet de survol pour chaque produit */
+.best-products .product:hover {
+    transform: translateY(-10px); /* Déplacement vers le haut au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre portée plus intense au survol */
+}
+
+/* Style pour les images des produits */
+.best-products .product img {
+    width: 150px; /* Ajuster la largeur selon vos besoins */
+    height: auto; /* Conserver les proportions de l'image */
+    border-radius: 10px; /* Bordures arrondies pour les images */
+    margin-right: 20px; /* Espace entre l'image et le contenu texte */
+}
+
+/* Style pour le contenu du produit */
+.best-products .product-content {
+    flex-grow: 1; /* Permet au contenu de prendre le reste de l'espace */
+}
+
+/* Style pour le nom du produit */
+.best-products .product h3 {
+    font-size: 1.5em; /* Taille de la police pour le nom du produit */
+    color: #393737; /* Couleur du texte */
+    margin-top: 10px; /* Marge supérieure */
+    margin-bottom: 10px; /* Marge inférieure */
+}
+
+/* Style pour les prix */
+.best-products .prices {
+    font-size: 1em; /* Taille de la police pour les prix */
+    color: #666666; /* Couleur du texte */
+    margin-top: 10px; /* Marge supérieure */
+    margin-bottom: 10px; /* Marge inférieure */
+}
+
+/* Style pour le prix avant réduction */
+.best-products .prices .old-price {
+    text-decoration: line-through; /* Texte barré pour l'ancien prix */
+    color: #999999; /* Couleur du texte */
+}
+
+/* Style pour le prix après réduction */
+.best-products .prices .new-price {
+    color: #ff6600; /* Couleur du texte pour le prix après réduction */
+    font-weight: bold; /* Texte en gras */
+}
+
+/* Style pour le bouton Voir les détails */
+.best-products .details-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border-radius: 20px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur pointeur */
+    text-decoration: none; /* Enlever la décoration de texte */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+    margin-top: 10px; /* Marge supérieure */
+}
+
+.best-products .details-link:hover {
+    background-color: #ff8533; /* Couleur de fond du bouton au survol */
+}
+
+/* Style pour le titre Tous les Produits */
+.all-products-title {
+    font-size: 2.5em; /* Taille de la police */
+    color: #393737; /* Couleur du texte */
+    text-align: center; /* Alignement centré */
+    margin-top: 20px; /* Marge supérieure */
+    margin-bottom: 20px; /* Marge inférieure */
+    font-weight: bold; /* Gras */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 2px; /* Espacement des lettres */
+    position: relative; /* Position relative pour l'animation */
+    transition: color 0.3s ease-in-out; /* Transition douce pour la couleur */
+}
+
+.all-products-title::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    background-color: #393737; /* Couleur de la ligne en surbrillance */
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.all-products-title:hover {
+    color: #666666; /* Couleur du texte au survol */
+}
+
+.all-products-title:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+/* Style pour le conteneur de chaque produit */
+.product {
+    display: flex; /* Utiliser flexbox pour organiser les éléments */
+    background-color: white; /* Couleur de fond des produits */
+    border-radius: 10px; /* Bordures arrondies pour les produits */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour les produits */
+    margin: 20px; /* Marge autour de chaque produit */
+    padding: 20px; /* Espacement interne pour les produits */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition douce pour l'animation */
+    overflow: hidden; /* Cache le débordement */
+}
+
+/* Effet de survol pour chaque produit */
+.product:hover {
+    transform: translateY(-10px); /* Déplacement vers le haut au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre portée plus intense au survol */
+}
+
+/* Style pour le conteneur de l'image du produit */
+.product img {
+    width: 150px; /* Ajuster la largeur selon vos besoins */
+    height: 120px; /* Conserver les proportions de l'image */
+    border-radius: 10px; /* Bordures arrondies pour les images */
+    margin-right: 20px; /* Espace entre l'image et le contenu texte */
+}
+
+/* Style pour le contenu du produit */
+.product-content {
+    flex-grow: 1; /* Permet au contenu de prendre le reste de l'espace */
+}
+
+/* Style pour le nom du produit */
+.product h3 {
+    font-size: 1.5em; /* Taille de la police pour le nom du produit */
+    color: #393737; /* Couleur du texte */
+    margin-top: 0px; /* Marge supérieure */
+    margin-bottom: 40px; /* Marge inférieure */
+}
+
+/* Conteneur des prix */
+.prices {
+    display: flex;
+    margin-top: 40px;
+    align-items: center; /* Aligner verticalement au centre */
+    justify-content: space-between; /* Espacement entre les éléments */
+    gap: 10px; /* Espacement entre les éléments */
+}
+
+/* Style pour le prix avant réduction */
+.prices .old-price {
+    font-size: 0.9em;
+    text-decoration: line-through; /* Texte barré pour l'ancien prix */
+    color: #999999; /* Couleur du texte */
+    margin: 0px; /* Supprimer la marge par défaut */
+}
+
+/* Style pour le prix après réduction */
+.prices .new-price {
+    font-size: 1.4em;
+    color: #ff0000; /* Couleur du texte pour le prix après réduction */
+    font-weight: bold; /* Texte en gras */
+    margin: 0; /* Supprimer la marge par défaut */
+}
+
+/* Style pour le bouton Voir les détails */
+.details-link {
+    display: inline-block;
+    padding: 10px 20px;
+    height: 22px;
+    width: auto;
+    background-color: #ff6600; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border-radius: 20px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur pointeur */
+    text-decoration: none; /* Enlever la décoration de texte */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+    margin-top: 100px; /* Marge supérieure *//* Transition douce pour le changement de couleur */
+    margin-right: 10px; 
+    margin-left: 950px;
+}
+
+.details-link:hover {
+    background-color: #ff8533; /* Couleur de fond du bouton au survol */
 }
