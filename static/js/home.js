@@ -10,23 +10,3 @@ function showNextImage() {
 
 setInterval(showNextImage, 3000); // Change d'image toutes les 3 secondes
 
-// JavaScript pour le carrousel des catégories
-const categoriesContainer = document.querySelector('.categories');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-let scrollAmount = 0;
-const scrollStep = 100; // Ajustez la valeur selon vos besoins
-
-prevBtn.addEventListener('click', () => {
-    categoriesContainer.scrollBy({
-        left: -scrollStep,
-        behavior: 'smooth'
-    });
-});
-
-nextBtn.addEventListener('click', () => {
-    categoriesContainer.scrollBy({
-        left: scrollStep,
-        behavior: 'smooth'
-    });
-});
