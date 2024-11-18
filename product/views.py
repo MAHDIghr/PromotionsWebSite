@@ -9,3 +9,12 @@ def home(request):
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     return render(request, 'product.html', {'product': product})
+
+def faq(request):
+    return render(request, 'faq.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')

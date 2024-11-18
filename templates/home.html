@@ -72,36 +72,36 @@
                 <p class="category-name">Sport</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Accessoires">
-                <p class="category-name">Accessoires</p>
+                <img src="{% static 'images/category-icones/beaute.png' %}" alt="Beaute">
+                <p class="category-name">Beauté</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Électronique">
-                <p class="category-name">Électronique</p>
+                <img src="{% static 'images/category-icones/car&bike.png' %}" alt="Électronique">
+                <p class="category-name">Car & Bike</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Lifestyle">
-                <p class="category-name">Lifestyle</p>
+                <img src="{% static 'images/category-icones/tech.png' %}" alt="Lifestyle">
+                <p class="category-name">Technologie</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Décoration">
-                <p class="category-name">Décoration</p>
+                <img src="{% static 'images/category-icones/toy.png' %}" alt="Enfants">
+                <p class="category-name">Enfants & Jouets</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Lifestyle">
-                <p class="category-name">Lifestyle</p>
+                <img src="{% static 'images/category-icones/internet.png' %}" alt="Informatique">
+                <p class="category-name">Informatique</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Décoration">
-                <p class="category-name">Décoration</p>
+                <img src="{% static 'images/category-icones/house.png' %}" alt="Décoration">
+                <p class="category-name">Maison & Décoration</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Lifestyle">
-                <p class="category-name">Lifestyle</p>
+                <img src="{% static 'images/category-icones/clothes.png' %}" alt="Vetements">
+                <p class="category-name">Vetements</p>
             </div>
             <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Décoration">
-                <p class="category-name">Décoration</p>
+                <img src="{% static 'images/category-icones/pets.png' %}" alt="Animaux">
+                <p class="category-name">Animaux</p>
             </div>
         </div>
     </section>
@@ -183,11 +183,10 @@
             </ul>
             <ul class="menu">
               <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-              <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+              <li class="menu__item"><a class="menu__link" href="{% url 'about' %}">About</a></li>
               <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-              <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-              <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-        
+              <li class="menu__item"><a class="menu__link" href="{% url 'faq' %}">FAQ</a></li>
+              <li class="menu__item"><a class="menu__link" href="{% url 'contact' %}">Contact</a></li>
             </ul>
             <p>&copy;2024 PromoZella | All Rights Reserved</p>
         </footer>

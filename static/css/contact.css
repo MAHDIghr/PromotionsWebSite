@@ -1,0 +1,89 @@
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Button retour a l acceuil */
+.btn.btn-outline-dark { 
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-bottom: 10%;
+    color: orange; /* Couleur du texte */
+    border-color: orange; /* Couleur des bordures */
+}
+
+.btn.btn-outline-dark:hover { 
+    color: rgb(0, 0, 0); /* Couleur du texte */
+    background-color: orange;
+}
+/* ====================================================*/
+.contact-section {
+    padding: 60px 0;
+    background-color: #2c2c2c;
+    color: white;
+}
+.contact-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.contact-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #d35400; /* Orange foncé */
+    text-align: center;
+    margin-top: 20px;
+}
+.contact-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #f39c12; /* Orange clair */
+    text-align: center;
+    margin-top: 10px;
+}
+.contact-message p {
+    margin: 0;
+}
+.contact-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.form-group {
+    margin-bottom: 30px;
+}
+.form-control, .btn {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.form-control {
+    background-color: white;
+    color: #2c2c2c;
+    border: 1px solid #ced4da;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.form-control:focus {
+    background-color: #d35400; /* Orange foncé */
+    color: white;
+    border-color: #d35400;
+}
+.btn-primary {
+    background-color: #d35400; /* Orange foncé */
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.btn-primary:hover {
+    background-color: #e67e22; /* Orange plus clair */
+    transform: translateY(-3px);
+}
+.btn-back {
+    background-color: #e67e22; /* Orange clair */
+    color: white;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.btn-back:hover {
+    background-color: #d35400; /* Orange plus foncé */
+    transform: translateY(-3px);
+}
