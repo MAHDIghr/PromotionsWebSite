@@ -82,7 +82,7 @@ def search(request):
         if len(products) == 0:
             title = "Aucun produits ne correspond à votre recherche : \"" + query +"\""
         else : 
-            title = "Produits correspandants à votre recherche : \""  + query +"\""
+            title = "Résultats pour : \""  + query +"\""
         return render(request, 'home.html', {'Products': products, 'sellers_sites': sellers_sites, 'title': title})
     
     title = "Meilleurs Plans du Moment"
