@@ -101,6 +101,40 @@ class Product(models.Model):
         # Utilisation de .values() pour obtenir des valeurs distinctes de 'seller_site'
         return cls.objects.values_list('seller_site', flat=True).distinct()
     
+    @classmethod
+    def get_products_without_code_promo(cls):
+        """
+        Récupère les produits sans code promo et les trie par score de tendance décroissant.
+        
+        :return: QuerySet des produits sans code promo, triés par trending_score.
+        """
+        return cls.objects.filter(promo_code__isnull=True, is_active=True).order_by('-trending_score')
+    
+    @classmethod
+    def get_products_with_code_promo(cls):
+        """
+        Récupère les produits avec un code promo et les trie par score de tendance décroissant.
+        
+        :return: QuerySet des produits avec code promo, triés par trending_score.
+        """
+        return cls.objects.filter(promo_code__isnull=False, promo_code__gt='', is_active=True).order_by('-trending_score')
+
+    @classmethod
+    def get_products_with_best_discount(cls, limit=30):
+        """
+        Récupère les produits avec les meilleures réductions en calculant
+        la différence entre le prix original et le prix actuel,
+        triés par ordre décroissant de la réduction.
+
+        :param limit: Le nombre maximum de produits à retourner (par défaut 30).
+        :return: QuerySet des produits triés par réduction décroissante.
+        """
+        # Annoter chaque produit avec un champ temporaire calculant la réduction
+        products = cls.objects.filter(is_active=True, original_price__isnull=False).annotate(discount=models.F('original_price') - models.F('current_price')).order_by('-discount')
+        # Trier par la réduction décroissante
+
+        return products[:limit]  # Limiter à `limit` produits
+
 # Signal post_save pour générer le slug après la création du produit
 @receiver(post_save, sender=Product)
 def generate_product_slug(sender, instance, created, **kwargs):

@@ -307,6 +307,10 @@ button.navbar-toggler {
     border-radius: 10px; /* Bordures arrondies pour les images */
 }
 
+.seller-product-title{
+    background-color: #343a40;
+    margin-left: 20%;
+}
 
 /* Style pour le contenu du produit */
 .best-deals .product-content {
