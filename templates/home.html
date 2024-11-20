@@ -31,11 +31,12 @@
                   Marques
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Aliexpress</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Amazon</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">MIMICHA</a></li>
+                  {% for seller in sellers_sites %}
+                    {% if seller is not none %}
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'products_by_seller' seller_site=seller %}">{{ seller }}</a></li>
+                    {% endif %}
+                  {% endfor %}
                 </ul>
               </li>
             </ul>
@@ -64,69 +65,89 @@
         <h3 class="Black-Firday-Title">Black Friday 2024</h3>
     </section>
 
-    <!-- Category Section -->
-    <section class="category-section">
-        <div class="container category-bubbles">
-            <div class="category-bubble">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Mode">
-                <p class="category-name">Sport</p>
-            </div>
-            <div class="category-bubble">
+  
+  <!-- Category Section -->
+  <section class="category-section">
+    <div class="container category-bubbles">
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Sport & plein air' %}">
+                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Sport">
+                <p class="category-name">Sport & plein air</p>
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Beauté & Santé et être' %}">
                 <img src="{% static 'images/category-icones/beaute.png' %}" alt="Beaute">
-                <p class="category-name">Beauté</p>
-            </div>
-            <div class="category-bubble">
-                <img src="{% static 'images/category-icones/car&bike.png' %}" alt="Électronique">
-                <p class="category-name">Car & Bike</p>
-            </div>
-            <div class="category-bubble">
-                <img src="{% static 'images/category-icones/tech.png' %}" alt="Lifestyle">
-                <p class="category-name">Technologie</p>
-            </div>
-            <div class="category-bubble">
+                <p class="category-name">Beauté & Santé et être</p>
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Auto-Moto' %}">
+                <img src="{% static 'images/category-icones/car&bike.png' %}" alt="Auto-Moto">
+                <p class="category-name">Auto-Moto</p>
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='High-Tech' %}">
+                <img src="{% static 'images/category-icones/tech.png' %}" alt="High-Tech">
+                <p class="category-name">High-Tech</p>
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Enfants & Jouets' %}">
                 <img src="{% static 'images/category-icones/toy.png' %}" alt="Enfants">
                 <p class="category-name">Enfants & Jouets</p>
-            </div>
-            <div class="category-bubble">
-                <img src="{% static 'images/category-icones/internet.png' %}" alt="Informatique">
-                <p class="category-name">Informatique</p>
-            </div>
-            <div class="category-bubble">
-                <img src="{% static 'images/category-icones/house.png' %}" alt="Décoration">
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Voyages & Billets' %}">
+                <img src="{% static 'images/category-icones/internet.png' %}" alt="Voyages">
+                <p class="category-name">Voyages & Billets</p>
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Maison & Décoration' %}">
+                <img src="{% static 'images/category-icones/house.png' %}" alt="Maison">
                 <p class="category-name">Maison & Décoration</p>
-            </div>
-            <div class="category-bubble">
-                <img src="{% static 'images/category-icones/clothes.png' %}" alt="Vetements">
-                <p class="category-name">Vetements</p>
-            </div>
-            <div class="category-bubble">
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Mode' %}">
+                <img src="{% static 'images/category-icones/clothes.png' %}" alt="Mode">
+                <p class="category-name">Mode</p>
+            </a>
+        </div>
+        <div class="category-bubble">
+            <a href="{% url 'category_products' category_name='Animaux' %}">
                 <img src="{% static 'images/category-icones/pets.png' %}" alt="Animaux">
                 <p class="category-name">Animaux</p>
-            </div>
+            </a>
         </div>
-    </section>
+    </div>
+  </section>
+
 
 
     <!-- Best Deals Section -->
     <section class="best-deals">
-        <h2 class="best-deals-title">Meilleurs Plans du Moment</h2>
+        <h2 class="best-deals-title">{{ title }}</h2>  <!-- Utilisation de la variable 'title' -->
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Filtres
+                Filtres
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item active" href="#">Action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
+                <li><a class="dropdown-item active" href="#">Amazon</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
         </div>
 
         <div class="products">
-            {% for product in MeilleursProduitsDuMoments %}
+            {% for product in Products %}
                 <div class="product">
                     {% if product.images.first %}
                         <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}"> 

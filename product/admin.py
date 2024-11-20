@@ -15,8 +15,8 @@ class CategoryAdmin(admin.ModelAdmin):
 # Register the Product model
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'original_price', 'current_price', 'stock', 'promo_start_date', 'promo_end_date', 'is_active', 'click_count')
-    list_filter = ('category', 'is_active')  # Filters for the admin panel
+    list_display = ('name', 'seller_site', 'trending_score', 'category', 'original_price', 'current_price', 'promo_start_date', 'promo_end_date', 'is_active', 'click_count')
+    list_filter = ('category', 'is_active', 'seller_site')  # Filters for the admin panel
     search_fields = ('name', 'identifier', 'description')  # Fields to be searchable
     date_hierarchy = 'created_at'  # Date hierarchy for easy browsing
     ordering = ('-created_at',)  # Ordering by the created date
