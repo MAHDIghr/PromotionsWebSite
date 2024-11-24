@@ -18,7 +18,7 @@
     <!-- Nav bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
               <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="Bootstrap" width="150" height="50">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Marques
                       </a>
                       <ul class="dropdown-menu">
@@ -48,7 +48,6 @@
       </div>
     </nav>
 
-
     <!-- Animated Advertisement Section -->
     <section class="ad-section">
         <div class="ad-panel">
@@ -66,155 +65,112 @@
         <h3 class="Black-Firday-Title">Black Friday 2024</h3>
     </section>
 
-  
   <!-- Category Section -->
   <section class="category-section">
     <div class="container category-bubbles">
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Sport & plein air' %}">
-                <img src="{% static 'images/category-icones/sportIcon.png' %}" alt="Sport">
-                <p class="category-name">Sport & plein air</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Beauté & Santé et être' %}">
-                <img src="{% static 'images/category-icones/beaute.png' %}" alt="Beaute">
-                <p class="category-name">Beauté & Santé et être</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Auto-Moto' %}">
-                <img src="{% static 'images/category-icones/car&bike.png' %}" alt="Auto-Moto">
-                <p class="category-name">Auto-Moto</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='High-Tech' %}">
-                <img src="{% static 'images/category-icones/tech.png' %}" alt="High-Tech">
-                <p class="category-name">High-Tech</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Enfants & Jouets' %}">
-                <img src="{% static 'images/category-icones/toy.png' %}" alt="Enfants">
-                <p class="category-name">Enfants & Jouets</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Voyages & Billets' %}">
-                <img src="{% static 'images/category-icones/internet.png' %}" alt="Voyages">
-                <p class="category-name">Voyages & Billets</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Maison & Décoration' %}">
-                <img src="{% static 'images/category-icones/house.png' %}" alt="Maison">
-                <p class="category-name">Maison & Décoration</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Mode' %}">
-                <img src="{% static 'images/category-icones/clothes.png' %}" alt="Mode">
-                <p class="category-name">Mode</p>
-            </a>
-        </div>
-        <div class="category-bubble">
-            <a href="{% url 'category_products' category_name='Animaux' %}">
-                <img src="{% static 'images/category-icones/pets.png' %}" alt="Animaux">
-                <p class="category-name">Animaux</p>
-            </a>
-        </div>
+        {% for category in categories %}
+            <div class="category-bubble" onclick="window.location.href='{% url 'category_products' category_name=category.name %}'">
+                {% if category.icon %}
+                    <img src="{{ category.icon.url }}" alt="{{ category.name }}">
+                {% else %}
+                    <img src="{% static 'images/category-icones/beaute.png' %}" alt="{{ category.name }}">
+                {% endif %}
+                <p class="category-name">{{ category.name }}</p>
+            </div>
+        {% endfor %}    
     </div>
   </section>
 
+  <!-- Best Deals Section -->
+  <section class="best-deals">
+      <h2 class="best-deals-title">{{ title }}</h2>  
+      <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Produits :
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li>
+                <a class="dropdown-item active" href="{% url 'products_with_promo_code' %}">Avec code promo</a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <a class="dropdown-item" href="{% url 'products_without_promo_code' %}">Sans code promo</a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <a class="dropdown-item" href="{% url 'products_with_bestPromo' %}">Meilleurs promos</a>
+            </li>
+        </ul>
+      </div>
 
-
-    <!-- Best Deals Section -->
-    <section class="best-deals">
-        <h2 class="best-deals-title">{{ title }}</h2>  <!-- Utilisation de la variable 'title' -->
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Filtres
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li>
-                  <a class="dropdown-item active" href="{% url 'products_with_promo_code' %}">Avec code promo</a>
-              </li>
-              <li>
-                  <hr class="dropdown-divider">
-              </li>
-              <li>
-                  <a class="dropdown-item" href="{% url 'products_without_promo_code' %}">Sans code promo</a>
-              </li>
-              <li>
-                  <hr class="dropdown-divider">
-              </li>
-              <li>
-                  <a class="dropdown-item" href="{% url 'products_with_bestPromo' %}">Meilleurs promos</a>
-              </li>
-          </ul>
-        </div>
-
-        <div class="products">
-            {% for product in Products %}
-                <div class="product">
+      <div class="products">
+          {% for product in Products %}
+              <div class="product">
+                <h4 class="seller-product-title"> {{product.seller_site}} </h4>
+                <div class="product-details">
                     {% if product.images.first %}
                         <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}"> 
-                        <h4 class"seller-product-title"> {{product.seller_site}} </h4>
                     {% else %} 
                         <img src="{% static 'images/logoWebsite.png' %}" alt="No image available"> 
-                        <h4 class"seller-product-title"> {{product.seller_site}} </h4>
                     {% endif %}   
-                    <h3>{{ product.name }}</h3>
-                    <a class="details-link" href="{% url 'product_detail' product.slug %}" target="_blank"> 
-                        Détails +
-                    </a>                    
-                    <a href="{{ product.product_link }}" target="_blank">
-                        <button class="details-button" role="button"><span class="text">Voir sur le site >></span></button>
-                    </a>
+                  <h3 class="product-name">{{ product.name }}</h3>
                 </div>
-            {% endfor %}
-        </div>
-        {% if products|length > 5 %}
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        {% endif %}
-    </section>
+                  <a class="details-link" href="{% url 'product_detail' product.slug %}" target="_blank"> 
+                      Détails +
+                  </a>                    
+                  <a href="{{ product.product_link }}" target="_blank">
+                      <button class="details-button" role="button"><span class="text">Voir sur le site >></span></button>
+                  </a>
+              </div>
+          {% endfor %}
+      </div>
+      
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="1">1</a></li>
+          <li class="page-item"><a class="page-link" href="2">2</a></li>
+          <li class="page-item"><a class="page-link" href="3">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+  </section>
     
-    <!--Footer section -->
-    <section class="footer-section">
+  <!--Footer section -->
+  <section class="footer-section">
         <footer class="footer">
+            <a href="{% url 'home' %}" type="button" class="footer-brand" >
+                <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="PromoZella" width="150" height="50">
+            </a>
             <ul class="social-icon">
-              <li class="social-icon__item"><a class="social-icon__link" href="#">
-                  <ion-icon name="logo-tiktok"></ion-icon>
-                </a></li>
-              <li class="social-icon__item"><a class="social-icon__link" href="#">
-                  <ion-icon name="logo-instagram"></ion-icon>
-                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-tiktok"></ion-icon>
+            </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
             </ul>
             <ul class="menu">
-              <li class="menu__item"><a class="menu__link" href="{% url 'about' %}">About</a></li>
-              <li class="menu__item"><a class="menu__link" href="{% url 'faq' %}">FAQ</a></li>
-              <li class="menu__item"><a class="menu__link" href="{% url 'contact' %}">Contact</a></li>
+                <li class="menu__item"><a class="menu__link" href="{% url 'about' %}">About</a></li>
+                <li class="menu__item"><a class="menu__link" href="{% url 'faq' %}">FAQ</a></li>
+                <li class="menu__item"><a class="menu__link" href="{% url 'contact' %}">Contact</a></li>
             </ul>
             <p>&copy;2024 PromoZella | All Rights Reserved</p>
         </footer>
-    </section>
+  </section>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

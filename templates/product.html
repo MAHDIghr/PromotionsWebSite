@@ -5,33 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ product.name }}</title>
     {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <!-- Pour importer le style du footer -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <main>
-        <section class="product-container">
-            <div class="product">
-                <div class="image-gallery">
-                    <div class="carousel">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a href="{% url 'home' %}" type="button" class="navbar-brand" >
+                <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="Bootstrap" width="150" height="50">
+            </a>
+            <button onclick="history.back()" type="button" class="btn btn-outline-dark"> 
+                < Retour
+            </button>
+    </nav>
+
+    <div class="container">
+        <!-- Détails du produit -->
+        <div class="detail">
+            <div class="image">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                    <div class="carousel-inner">
                         {% for image in product.images.all %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <img src="{{ image.image.url }}" alt="{{ product.name }}">
-                            </div>
+                                <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.name }}">
+                            </div> 
                         {% endfor %}
-                        <button class="carousel-control prev">&laquo;</button>
-                        <button class="carousel-control next">&raquo;</button>
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <h2 class="product-name">{{ product.name }}</h2>
-                <p class="product-description">{{ product.description }}</p>
-                <div class="prices">
-                    <p class="old-price">Prix avant: <span>{{ product.original_price }}€</span></p>
-                    <p class="new-price">Prix après: <span>{{ product.current_price }}€</span></p>
-                </div>
-                <a href="{{ product.product_link }}" class="buy-button" target="_blank">Acheter maintenant</a>
             </div>
-        </section>
-    </main>
+            <div class="content">
+                <h1 class="name">{{ product.name }}</h1>
+                <div class="new-price">€{{ product.current_price }}</div>
+                <p class="old-price">€{{ product.original_price}}</p>
+                <p class="delivery-info">
+                    <a href="{{ product.product_link }}" target="_blank">Info Livraison | {{product.seller_site}}</a>
+                </p>
+                <div class="buttons">
+                    <button onclick="window.location.href='{% url 'home' %}'"> 
+                        << Retour 
+                    </button>
+                    <button onclick="window.open('{{ product.product_link }}', '_blank')">
+                        Voir sur le site >>
+                        <span>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M5.535 7.677c.313-.98.687-2.023.926-2.677H17.46c.253.63.646 1.64.977 2.61.166.487.312.953.416 1.347.11.42.148.675.148.779 0 .18-.032.355-.09.515-.06.161-.144.3-.243.412-.1.111-.21.192-.324.245a.809.809 0 0 1-.686 0 1.004 1.004 0 0 1-.324-.245c-.1-.112-.183-.25-.242-.412a1.473 1.473 0 0 1-.091-.515 1 1 0 1 0-2 0 1.4 1.4 0 0 1-.333.927.896.896 0 0 1-.667.323.896.896 0 0 1-.667-.323A1.401 1.401 0 0 1 13 9.736a1 1 0 1 0-2 0 1.4 1.4 0 0 1-.333.927.896.896 0 0 1-.667.323.896.896 0 0 1-.667-.323A1.4 1.4 0 0 1 9 9.74v-.008a1 1 0 0 0-2 .003v.008a1.504 1.504 0 0 1-.18.712 1.22 1.22 0 0 1-.146.209l-.007.007a1.01 1.01 0 0 1-.325.248.82.82 0 0 1-.316.08.973.973 0 0 1-.563-.256 1.224 1.224 0 0 1-.102-.103A1.518 1.518 0 0 1 5 9.724v-.006a2.543 2.543 0 0 1 .029-.207c.024-.132.06-.296.11-.49.098-.385.237-.85.395-1.344ZM4 12.112a3.521 3.521 0 0 1-1-2.376c0-.349.098-.8.202-1.208.112-.441.264-.95.428-1.46.327-1.024.715-2.104.958-2.767A1.985 1.985 0 0 1 6.456 3h11.01c.803 0 1.539.481 1.844 1.243.258.641.67 1.697 1.019 2.72a22.3 22.3 0 0 1 .457 1.487c.114.433.214.903.214 1.286 0 .412-.072.821-.214 1.207A3.288 3.288 0 0 1 20 12.16V19a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1v-4H8v4a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2v-6.888ZM13 15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2Z" clip-rule="evenodd"/>
+                            </svg>                              
+                        </span>
+                    </button>
+                </div>
+                <!-- On affiche le code dans le cas ou il existe -->
+                {% if product.promo_code %}
+                    <p class="promo-code">Code Promo : {{ product.promo_code }}</p>
+                {% endif %}
+                <h5 class="title-description">À propos de cette promo :</h5>
+                <div class="description">{{ product.description }}</div>
+            </div>
+        </div>
+
+        <!-- Produits similaires -->
+        {%if products%}
+            <div class="title-list-products">Vous aimerez aussi </div>
+            <div class="listProduct">
+                {% for similar_product in products %}
+                <a href="{% url 'product_detail' similar_product.slug %}" class="item">
+                    <!-- Affiche la première image du produit similaire si elle existe -->
+                    {% if similar_product.images.first %}
+                        <img src="{{ similar_product.images.first.image.url }}" alt="{{ similar_product.name }}">
+                    {% else %}
+                        <img src="{% static 'images/logoWebsite.png' %}" alt="Default Image">
+                    {% endif %}
+                    <h2>{{ similar_product.name }}</h2>
+                    <div class="new-price">${{ similar_product.current_price }}</div>
+                    <p class="old-price">€{{ similar_product.original_price}}</p>
+                </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!--Footer section -->
+    <section class="footer-section">
+        <footer class="footer">
+            <a href="{% url 'home' %}" type="button" class="footer-brand" >
+                <img src="{% static 'images/logoWebsiteWhite.png' %}" alt="PromoZella" width="150" height="50">
+            </a>
+            <ul class="social-icon">
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-tiktok"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-instagram"></ion-icon>
+                </a></li>
+            </ul>
+            <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="{% url 'about' %}">About</a></li>
+            <li class="menu__item"><a class="menu__link" href="{% url 'faq' %}">FAQ</a></li>
+            <li class="menu__item"><a class="menu__link" href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+            <p>&copy;2024 PromoZella | All Rights Reserved</p>
+        </footer>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script src="{% static 'js/product.js' %}"></script>
 </body>
 </html>

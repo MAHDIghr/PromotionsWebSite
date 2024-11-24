@@ -9,8 +9,8 @@ class ProductImageInline(admin.TabularInline):
 # Register the Category model
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')  # Fields to display in the admin list
-    search_fields = ('name', 'description')  # Fields to be searchable
+    list_display = ('name', 'description', 'icon')  # Fields to display in the admin list
+    search_fields = ('name', 'description', 'icon')  # Fields to be searchable
 
 # Register the Product model
 @admin.register(Product)

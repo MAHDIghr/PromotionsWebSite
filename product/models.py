@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models import Q
 
 class Product(models.Model):
     # Product name
@@ -54,6 +55,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
+
     @classmethod
     def get_top_trending_products(cls, limit=20):
         """
@@ -76,7 +78,6 @@ class Product(models.Model):
         """
         # Filtrer les produits par le nom de la catégorie et trier par trending_score
         products = cls.objects.filter(category__name=category_name, is_active=True).order_by('-trending_score')
-
         if limit:
             return products[:limit]  # Limiter le nombre de produits retournés si `limit` est défini
         return products
@@ -153,10 +154,16 @@ class ProductImage(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    icon = models.ImageField(upload_to='icons/', blank=True, null=True)
 
     def __str__(self):
         return self.name
 
+    @classmethod
+    def get_all_categories(cls):
+        # Retourner toutes les catégories
+        return cls.objects.all()
+    
 # Functions for DB interrogation
 
 @classmethod

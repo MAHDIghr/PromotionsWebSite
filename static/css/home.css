@@ -83,8 +83,8 @@ button.navbar-toggler {
 }
 
 .best-deals .dropdown .btn {
-    margin-left: 80%;
-    margin-right: 3%;
+    margin-left: 70%;
+    margin-right: 5%;
     color: orange; /* Couleur du texte */
     background-color: transparent; /* Couleur de l'arrière-plan */
     border: 2px solid orange; /* Bordure en orange */
@@ -294,6 +294,10 @@ button.navbar-toggler {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Ombre douce pour donner de la profondeur */
 }
 
+.product-details {
+    display: flex;
+    gap: 20px;
+}
 /* Effet de survol pour chaque produit */
 .best-deals .product:hover {
     transform: translateY(-10px); /* Déplacement vers le haut au survol */
@@ -307,9 +311,26 @@ button.navbar-toggler {
     border-radius: 10px; /* Bordures arrondies pour les images */
 }
 
-.seller-product-title{
-    background-color: #343a40;
-    margin-left: 20%;
+.seller-product-title {
+    font-size: 1rem;  /* Taille du texte */
+    font-weight: bold;  /* Gras */
+    color: #ffc229;        /* Couleur du texte */
+    text-align: center; /* Centrer le texte */
+    margin-top: 3px;   /* Espace au-dessus */
+    margin-bottom: 10px; /* Espace en dessous */
+    padding: 4px;       /* Un peu de padding autour du texte */
+    background-color: #f4f4f4;  /* Couleur de fond */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+/* Style pour le nom du produit */
+.product-name {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif; /* Police moderne et élégante */
+    font-size: 1.2rem;                  /* Taille du texte */
+    color: #333333;                     /* Couleur sombre pour la lisibilité */
+    margin-top: 20px;                   /* Espace au-dessus */
+    margin-bottom: 10px;                /* Espace en dessous */
 }
 
 /* Style pour le contenu du produit */
@@ -326,7 +347,7 @@ button.navbar-toggler {
     margin-right: 2%;
 }
 
-/* Style pour le bouton Voir les détails */
+/* Style pour le bouton Voir sur le site */
 .products .details-button {
     margin-top: 3%; /* Distance par rapport au bas */
     display: inline-block;
@@ -380,6 +401,9 @@ button.navbar-toggler {
     .details-link:hover {
         font-size: 1em;
     }
+    .product-name {
+        font-size: 1rem;                  
+    }
 }
 
 /* Responsive: Ajustement pour les petits écrans (mobiles) */
@@ -387,6 +411,10 @@ button.navbar-toggler {
     .best-deals .product h3 {
         font-size: 1em; /* Taille encore plus petite pour les mobiles */
     }
+    .product-name {
+        font-size: 0.8rem;                  
+    }
+    
     .best-deals .product img {
         width: 170px; /* Ajuster la largeur selon vos besoins */
         height: 120px; /* Conserver les proportions de l'image */
@@ -418,6 +446,7 @@ button.navbar-toggler {
 
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
 
 .footer-section{
     margin-top: 50px;
