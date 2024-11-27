@@ -1,0 +1,6 @@
+# Ignorer la base de données SQLite
+db.sqlite3
+
+temp/
+
+passenger_wsgi.py
