@@ -30,6 +30,9 @@ ALLOWED_HOSTS = ['www.promozella.com', 'promozella.com', '127.0.0.1']
 
 #CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.app'] #Pour les test des messages avec contact
 
+DEFAULT_CHARSET = 'utf-8'
+FILE_CHARSET = 'utf-8'
+
 # Application definition
 
 INSTALLED_APPS = [

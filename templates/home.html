@@ -79,7 +79,7 @@
                 {% else %}
                     <img alt="{{ category.name }}">
                 {% endif %}
-                <p class="category-name">{{ category.name }}</p>
+                <p class="category-name">{{ category.name|safe }}</p>
             </div>
         {% endfor %}    
     </div>
