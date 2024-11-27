@@ -1,0 +1,79 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #2c2c2c;
+    color: white;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-section {
+    width: 100%;
+    min-height: 100vh; /* Assure que la section couvre toute la hauteur de l'écran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2c2c2c;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-header {
+    margin-bottom: 30px;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d35400; /* Orange foncé */
+    margin-top: 20px;
+}
+
+.contact-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #f39c12; /* Orange clair */
+}
+
+.contact-message p {
+    margin: 0;
+}
+
+.contact-content {
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: #d35400; /* Orange foncé */
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #e67e22; /* Orange plus clair */
+    transform: translateY(-3px);
+}
+
+/* Style responsive pour petits écrans */
+@media (max-width: 767px) {
+    .contact-title {
+        font-size: 2rem;
+    }
+
+    .contact-message {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        width: 100%; /* Bouton plein écran sur petits appareils */
+        font-size: 1rem; /* Ajuste la taille du texte du bouton */
+    }
+}

@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Category
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_protect
+from .models import ContactSubmission
 
 def home(request):
     sellers_sites  = Product.get_all_seller_sites()
@@ -17,6 +19,32 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+@csrf_protect
+def contact_after_submit(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        object = request.POST.get('object')
+        message = request.POST.get('message')
+
+        # Sauvegarder les données dans la base de données
+        ContactSubmission.objects.create(
+            name=name,
+            email=email,
+            object=object,
+            message=message
+        )
+        
+        return render(request, 'answer_contact.html')
+    return render(request, 'contact.html')
+
+def increment_click_and_redirect(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    product.click_count += 1
+    product.save()
+    return redirect(product.product_link)
+
 
 def product_detail(request, slug):
     # Récupérer le produit spécifique par son slug

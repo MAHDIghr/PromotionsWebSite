@@ -17,6 +17,9 @@ class Product(models.Model):
     # Current price (after promotion)
     current_price = models.DecimalField(max_digits=10, decimal_places=2)
     
+    # Price difference 
+    price_difference = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    
     # Category (relationship to another table, if needed)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
 
@@ -139,8 +142,10 @@ class Product(models.Model):
 # Signal post_save pour générer le slug après la création du produit
 @receiver(post_save, sender=Product)
 def generate_product_slug(sender, instance, created, **kwargs):
-    if created and not instance.slug:  # Si le produit est nouvellement créé et n'a pas de slug
-        instance.slug = slugify(f"{instance.name}-{instance.id}")  # Créer le slug basé sur le nom et l'ID
+    if created :
+        if not instance.slug:  # Si le produit est nouvellement créé et n'a pas de slug
+            instance.slug = slugify(f"{instance.name}-{instance.id}")  # Créer le slug basé sur le nom et l'ID
+        instance.price_difference = instance.original_price - instance.current_price if instance.original_price else 0
         instance.save()  # Sauvegarder à nouveau pour mettre à jour le slug avec l'ID
 
 class ProductImage(models.Model):
@@ -163,15 +168,14 @@ class Category(models.Model):
     def get_all_categories(cls):
         # Retourner toutes les catégories
         return cls.objects.all()
-    
-# Functions for DB interrogation
 
-@classmethod
-def get_all_products(cls):
-    return cls.objects.all()
+class ContactSubmission(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    object = models.CharField(max_length=200)
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
 
-def increment_click_count(self):
-    """Incrémente le compteur de clics."""
-    self.click_count += 1
-    self.save()
+    def __str__(self):
+        return f"Message from {self.name} - {self.email}"
 

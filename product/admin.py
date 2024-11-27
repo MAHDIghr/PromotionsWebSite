@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, ProductImage
+from .models import Product, Category, ProductImage, ContactSubmission
 
 # Inline admin for ProductImage
 class ProductImageInline(admin.TabularInline):
@@ -27,3 +27,10 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('product', 'image')  # Fields to display in the admin list
+
+# Register the ContactSubmission model
+@admin.register(ContactSubmission)
+class ContactSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'object', 'submitted_at')
+    ordering = ('-submitted_at',)  # Ordering by the submitted date
+

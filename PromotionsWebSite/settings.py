@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ir6fkxw2l(lktj=yir5#j$1b806nr7(_9gywr$*^xv0@0auc5('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.ngrok-free.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['www.promozella.com', 'promozella.com', '127.0.0.1']
 
+#CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.app'] #Pour les test des messages avec contact
 
 # Application definition
 
@@ -106,13 +107,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# Internationalization
+# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'fr-fr'  # Définit la langue par défaut sur le français (France)
 
-USE_I18N = True
+TIME_ZONE = 'Europe/Paris'  # Définit le fuseau horaire sur celui de Paris
 
-USE_TZ = True
+USE_I18N = True  # Active la prise en charge des traductions
+
+USE_TZ = True  # Active la gestion des fuseaux horaires
 
 
 # Static files (CSS, JavaScript, Images)
@@ -120,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -129,3 +133,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files 
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
