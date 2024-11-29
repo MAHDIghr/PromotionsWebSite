@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, ProductImage, ContactSubmission
+from .models import Product, Category, ProductImage, ContactSubmission, Link
 
 # Inline admin for ProductImage
 class ProductImageInline(admin.TabularInline):
@@ -34,3 +34,10 @@ class ContactSubmissionAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'object', 'submitted_at')
     ordering = ('-submitted_at',)  # Ordering by the submitted date
 
+# Register the Link model
+@admin.register(Link)
+class LinkAdmin(admin.ModelAdmin):
+    list_display = ('link', 'description', 'score')  # Champs affichés dans la liste des liens
+    search_fields = ('link', 'description')  # Champs recherchables
+    list_filter = ('score',)  # Filtres pour trier par score
+    ordering = ('-score',)  # Trier par score décroissant par défaut

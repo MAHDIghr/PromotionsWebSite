@@ -179,3 +179,11 @@ class ContactSubmission(models.Model):
     def __str__(self):
         return f"Message from {self.name} - {self.email}"
 
+
+class Link(models.Model):
+    link = models.URLField(max_length=200, unique=True)  # URL unique
+    description = models.TextField()  # Description du lien
+    score = models.IntegerField(default=0)  # Score du lien, entier
+
+    def __str__(self):
+        return self.link

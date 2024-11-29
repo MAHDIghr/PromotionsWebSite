@@ -1,0 +1,114 @@
+/* Style général */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, orange, gray); /* Gradient entre orange et gris */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Empêche le débordement de contenu */
+    background-size: cover;
+}
+
+/* Container principal */
+.container {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.7); /* Fond légèrement plus foncé pour plus de contraste */
+    border-radius: 30px; /* Coins encore plus arrondis */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); /* Ombre plus profonde pour un effet de flottement */
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Logo */
+.logo img {
+    max-width: 180px;
+    margin-bottom: 30px;
+    border: none; /* Enlève le cercle autour du logo */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Ombre plus intense autour du logo */
+    transition: transform 0.4s ease-in-out; /* Transition plus douce */
+}
+
+.logo img:hover {
+    transform: scale(1.1); /* Légère mise à l'échelle au survol */
+    opacity: 0.9; /* Effet de fondu au survol */
+}
+
+/* Liste des liens */
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.link-list li {
+    margin: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour les liens */
+}
+
+/* Style des liens */
+.link-list a {
+    text-decoration: none;
+    color: #ffd700; /* Jaune doré lumineux */
+    font-size: 1.4rem;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.15); /* Fond légèrement transparent */
+    border: 2px solid #ffd700;
+    border-radius: 15px; /* Coins arrondis */
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 1px; /* Espacement des lettres */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre nette pour les liens */
+}
+
+.link-list a:hover {
+    background: #ffd700;
+    color: #000;
+    transform: scale(1.05); /* Légère mise à l'échelle au survol */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Ombre prononcée au survol */
+}
+
+/* Effet au survol de la liste de liens */
+.link-list li:hover {
+    transform: translateY(-10px); /* Légère montée des éléments */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* Ombre plus profonde au survol */
+}
+
+/* Titre principal */
+h1 {
+    font-size: 3.5rem;
+    color: #FFD700;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Espacement des lettres */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4); /* Ombre très marquée */
+}
+
+/* Ajustements de la disposition pour les petits écrans */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+        max-width: 90%;
+    }
+
+    .link-list a {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+    }
+
+    .logo img {
+        max-width: 150px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+}

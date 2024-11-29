@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, Category
+from .models import Product, Category, Link, ContactSubmission
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_protect
-from .models import ContactSubmission
 
 def home(request):
     sellers_sites  = Product.get_all_seller_sites()
@@ -130,3 +129,8 @@ def search(request):
     title = "Meilleurs Plans du Moment"
     bestProducts = Product.get_top_trending_products()
     return render(request, 'home.html', {'Products': bestProducts, 'categories': categories, 'sellers_sites': sellers_sites, 'title': title})
+
+def usful_links(request):
+    # Récupérer tous les liens triés par score décroissant
+    links = Link.objects.order_by('-score')
+    return render(request, 'links.html', {'links': links})

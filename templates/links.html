@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Links</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/links.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="{% static 'images/logo/logoWebsite.png' %}" alt="PromoZella">
+        </div>
+
+        <!-- Liste des liens dynamiques -->
+        <ul class="link-list">
+            {% for link in links %}
+            <li>
+                <!-- La description est cliquable et redirige vers le lien -->
+                <a href="{{ link.link }}" target="_blank">{{ link.description }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
