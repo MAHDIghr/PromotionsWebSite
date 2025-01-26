@@ -7,7 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('links/', views.usful_links, name='links'),
     path('FAQ', views.faq, name='faq'),
-    path('NosServices', views.promozellaServices, name='promozellaServices'),
     path('About', views.about, name='about'),
     path('Contact', views.contact, name='contact'),
     path('Contact/message-envoye', views.contact_after_submit, name='contact_after_submit'),

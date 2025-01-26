@@ -10,9 +10,6 @@ def home(request):
     title = "Meilleurs Plans du Moment"  # Vous pouvez aussi le rendre dynamique selon les besoins
     return render(request, 'home.html', {'Products' : bestProducts, 'categories': categories, 'sellers_sites': sellers_sites,'title': title})
 
-def promozellaServices(request):
-    return render(request, 'promozellaServices.html')
-
 def faq(request):
     return render(request, 'faq.html')
 
