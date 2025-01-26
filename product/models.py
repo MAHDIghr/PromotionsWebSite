@@ -138,7 +138,15 @@ class Product(models.Model):
         # Trier par la réduction décroissante
 
         return products[:limit]  # Limiter à `limit` produits
-
+    
+    @classmethod
+    def get_amazon_product_links(cls):
+        # Filtrer les produits avec seller_site = 'Amazon' et récupérer leurs liens
+        amazon_products = cls.objects.filter(seller_site="Amazon", is_active=True)
+        # Retourner une liste de liens des produits
+        return [product.product_link for product in amazon_products]
+    
+    
 # Signal post_save pour générer le slug après la création du produit
 @receiver(post_save, sender=Product)
 def generate_product_slug(sender, instance, created, **kwargs):
