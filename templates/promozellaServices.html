@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Packs Tarifs - Création de Sites Web</title>
+    <style>
+        /* Palette de couleurs */
+        :root {
+            --gold: #D4AF37; /* Doré subtil */
+            --gold-dark: #B58B2E;
+            --black: #0A0A0A;
+            --white: #F1F1F1;
+            --gray: #A8A8A8;
+            --shadow: rgba(212, 175, 55, 0.2);
+            --hover-glow: rgba(212, 175, 55, 0.6);
+            --blue: #8e8200; /* Accent subtil */
+        }
+
+        /* Reset et styles globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: -10px;
+            color: var(--gray);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section des tarifs */
+        .pricing {
+            padding: 4rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1A1A1A, #0E0E0E);
+            border: 2px solid var(--gold-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px var(--hover-glow);
+            border-color: var(--gold);
+        }
+
+        .card:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent, var(--gold) 50%, transparent);
+            opacity: 0;
+            transform: rotate(-45deg);
+            transition: opacity 0.5s ease;
+        }
+
+        .card:hover:before {
+            opacity: 0.1;
+        }
+
+        .card .icon {
+            width: 100%;
+            height: 70px;
+            margin-left: 2%;
+            margin-bottom: 39%;
+        }
+
+        .card .icon img {
+            width: 90%; /* Ajuster la largeur selon vos besoins */
+            height: 190px; /* Conserver les proportions de l'image */
+            border-radius: 10px; /* Bordures arrondies pour les images */
+        }
+
+        .card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .card ul li {
+            margin: 0.7rem 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: var(--white);
+        }
+
+        .card ul li:before {
+            content: "✔️";
+            margin-right: 0.5rem;
+            color: var(--gold);
+        }
+
+        .card .price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin: 1rem 0;
+        }
+
+        .card .bonus {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--blue);
+            font-style: italic;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold-dark);
+            color: var(--black);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+        }
+
+        /* Boutons Contact */
+        .cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 10px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--hover-glow);
+        }
+
+        /* Animations */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 30px var(--gold);
+            }
+            50% {
+                text-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold), 0 0 40px var(--gold);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card ul li {
+                justify-content: flex-start;
+                margin: 0.5rem 0;
+                font-size: 0.7rem;
+            }
+            
+        }
+        /* Section Présentation */
+        .presentation {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(145deg, #0d0d0d, #1c1c1c);
+            border-top: 2px solid var(--gold-dark);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .presentation::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent, var(--gold-dark), transparent);
+            opacity: 0.1;
+            transform: rotate(-45deg);
+        }
+
+        .presentation h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .presentation p {
+            margin: 0.8rem auto;
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 800px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            color: #f1f1f1;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        
+        .footer p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .footer a {
+            color: #d4af37;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: rgba(212, 175, 55, 0.7);
+            transform: translateY(-3px);
+        }
+        
+        .social-icons {
+            margin-top: 1.5rem;
+            animation: bounceIn 2s ease-out;
+        }
+        
+        .social-icons .social-icon {
+            font-size: 0.8rem;
+            margin: 0 15px;
+            color: #d4af37;
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .social-icons .social-icon:hover {
+            color: rgba(212, 175, 55, 0.8);
+            transform: scale(1.2);
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+            opacity: 0;
+            transform: translateY(-20px);
+            }
+            to {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+            opacity: 0;
+            transform: translateY(20px);
+            }
+            to {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+            opacity: 0;
+            transform: scale(0.8);
+            }
+            50% {
+            opacity: 0.6;
+            transform: scale(1.1);
+            }
+            100% {
+            opacity: 1;
+            transform: scale(1);
+            }
+        }
+        
+        /* Glowing Border Effect */
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent, rgba(212, 175, 55, 0.15), transparent);
+            transform: translateX(-50%);
+            opacity: 0.3;
+            animation: pulseGlow 6s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% {
+            opacity: 0.3;
+            }
+            50% {
+            opacity: 0.5;
+            }
+        }
+        
+
+        /* Keyframes for Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .presentation, .realisation, footer {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .presentation.visible, .realisation.visible, footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .technologies {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(145deg, #0d0d0d, #1c1c1c);
+            border-top: 2px solid var(--gold-dark);
+            position: relative;
+        }
+        
+        .technologies h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        
+        .technologies .intro {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .tech-card {
+            background: linear-gradient(145deg, #1A1A1A, #0E0E0E);
+            border: 2px solid var(--gold-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px var(--hover-glow);
+            border-color: var(--gold);
+        }
+        
+        .tech-card img {
+            width: 160px;
+            height: 120px;
+            margin-bottom: 3%;
+        }
+        
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .tech-card p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <header class="pricing">
+        <div class="container">
+            <h1>Découvrez nos Packs Tarifs</h1>
+            <h2>Solutions Web Modernes & Adaptées à Vos Besoins</h2>
+        </div>
+    </header>
+
+    <section class="pricing">
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- Pack Éclosion -->
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'images/services/basiquePackImage.jpg' %}" alt="Icon">
+                    </div>
+                    <h3>Basique</h3>
+                    <p>Une simple page web, professionnelle et efficace pour démarrer.</p>
+                    <ul>
+                        <li>Page web fonctionnelle</li>
+                        <li>1 - 2 pages</li>
+                        <li>Design réactif (responsive)</li>
+                        <li>1 révision</li>
+                        <li>Configuration de l’hébergement</li>
+                        <li>Délai de livraison (1J)</li>
+                    </ul>
+                    <div class="price">€70 - €100</div>
+                </div>
+                
+                <!-- Pack Avancé -->
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'images/services/standardPackImage.webp' %}" alt="Icon">
+                    </div>
+                    <h3>Standard</h3>
+                    <p>Petit site Web/application Web  professionnel de 2 à 5 pages.</p>
+                    <ul>
+                        <li>Site web fonctionnel</li>
+                        <li>2 - 5 pages</li>
+                        <li>Design réactif (responsive)</li>
+                        <li>Base de données</li>
+                        <li>3 révisions</li>
+                        <li>Configuration de l’hébergement</li>
+                        <li>Délai de livraison (8J)</li>
+                    </ul>
+                    <div class="price">€250 - €500</div>
+                    <div class="bonus">Bonus : 1 maintenance gratuite</div>
+                </div>
+                <!-- Autres packs -->
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'images/services/premiumPackImage.webp' %}" alt="Icon">
+                    </div>
+                    <h3>Premium</h3>
+                    <p>Un site riche en contenu avec design personnalisé.</p>
+                    <ul>
+                        <li>Site web fonctionnel</li>
+                        <li>6 - 10 pages</li>
+                        <li>Design réactif (responsive)</li>
+                        <li>Base de données</li>
+                        <li>10 révisions</li>
+                        <li>Configuration de l’hébergement</li>
+                        <li>Icônes </li>
+                        <li>Délai de livraison (30J)</li>
+                    </ul>
+                    <div class="price">€900 - 2500€</div>
+                    <div class="bonus">Bonus : 2 maintenances gratuites</div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- AJOUT : Section Présentation -->
+    <section class="presentation">
+        <div class="container">
+            <h2>À Propos de Moi</h2>
+            <p>e suis un développeur logiciel passionné, spécialisé dans la création de solutions innovantes et performantes. Mon objectif est de transformer des idées en applications concrètes, en mettant l'accent sur la qualité, l'efficacité et l'expérience utilisateur.</p>
+            <p>Avec une expertise en développement logiciel, j'utilise des technologies modernes pour répondre aux besoins spécifiques de mes clients. Mon approche repose sur une collaboration étroite, une attention aux détails et un engagement envers l'excellence.</p>
+        </div>
+    </section>
+
+    <section class="technologies">
+        <div class="container">
+            <h2>Technologies Utilisées</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <img src="{% static 'images/services/djangoPython.png' %}"  alt="Django Logo">
+                    <h3>Django</h3>
+                    <p>Framework web Python puissant, rapide et sécurisé pour des applications robustes.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{% static 'images/services/htmlCssJs.png' %}" alt="HTML Logo">
+                    <h3>HTML/CSS/JS</h3>
+                    <p>Les bases du développement web pour structurer, styliser et dynamiser vos sites.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{% static 'images/services/bootstrap.png' %}" alt="Bootstrap Logo">
+                    <h3>Bootstrap</h3>
+                    <p>Framework front-end permettant de créer des designs élégants et responsives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-container">
+          <h2>Contactez-moi</h2>
+          <p>Email : <a href="mailto:mahdi.webdevcontact@gmail.com">mahdi.webdevcontact@gmail.com</a></p>
+          <p>Whatsapp : <a href="tel:+33641929707">+33 6 41 92 97 07</a></p>
+          <div class="social-icons">
+                <a href="#" title="Whatsapp" class="social-icon" target="_blank">
+                    <img src="{% static 'images/services/whatssapIcon.png' %}" alt="LinkedIn">
+                </a>
+                <a href="#" title="Mail" class="social-icon" target="_blank">
+                    <img src="{% static 'images/services/mailMini.png' %}" alt="Site Web">
+                </a>
+            </div>
+        </div>
+      </footer>
+      
+
+    <script>
+        // Intersection Observer pour les animations
+        const options = {
+            threshold: 0.2,
+        };
+
+        const revealElements = document.querySelectorAll(".presentation, .realisation, footer");
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        const techSection = document.querySelector(".technologies");
+
+        const techObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        techSection.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        techObserver.observe(techSection);
+
+    </script>
+</body>
+</html>
