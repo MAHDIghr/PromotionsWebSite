@@ -3,13 +3,6 @@ from .models import Product, Category, Link, ContactSubmission
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_protect
 
-def home(request):
-    sellers_sites  = Product.get_all_seller_sites()
-    bestProducts = Product.get_top_trending_products() 
-    categories = Category.get_all_categories()
-    title = "Meilleurs Plans du Moment"  # Vous pouvez aussi le rendre dynamique selon les besoins
-    return render(request, 'home.html', {'Products' : bestProducts, 'categories': categories, 'sellers_sites': sellers_sites,'title': title})
-
 def faq(request):
     return render(request, 'faq.html')
 
@@ -64,6 +57,24 @@ def category_products(request, category_name):
     categories = Category.get_all_categories()
     # Passer les produits à la template
     return render(request, 'home.html', {'Products': products, 'categories': categories, 'sellers_sites': sellers_sites, 'title': category_name})
+
+def home(request):
+
+    # Récupérer les données pour le template
+    sellers_sites = Product.get_all_seller_sites()
+    bestProducts = Product.get_top_trending_products()
+    categories = Category.get_all_categories()
+
+    # Préparer le contexte pour le template
+    title = "Meilleurs Plans du Moment"
+    context = {
+        'Products': bestProducts,
+        'categories': categories,
+        'sellers_sites': sellers_sites,
+        'title': title,
+    }
+
+    return render(request, 'home.html', context)
 
 def products_with_bestPromo(request): 
     products = Product.get_products_with_best_discount()
